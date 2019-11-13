@@ -1,0 +1,266 @@
+/*
+color:
+#396474
+ #DC9750
+#F3EAC0 
+#992c40
+*/
+
+*{
+    direction: rtl
+        
+}
+body{
+    position: relative;
+    background-color: #f7f7f7;
+
+    
+    
+}
+@font-face {
+    font-family: 'Tajawal';
+    src: url('../fonts/(Tajawal-Regular.ttf)'),
+       url('../fonts/Tajawal-Regular.ttf')  ;
+  }
+*{
+    font-family: "Tajawal";
+
+}
+
+/*--------------------------------------------------------------------------------------------*/
+.upper-bar{ 
+    background-color: #DC9750;
+    color: #fff;
+    
+  
+}
+
+.upper-bar .navbar-light .navbar-brand{
+    color: #fff;
+    font-size: 20px; 
+}
+.upper-bar .navbar-light .navbar-nav .nav-link {
+ color: #fff; 
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.navbar-light .navbar-toggler-icon{
+    background-image: none ;
+    color: #fff;
+
+}
+.navbar-light .navbar-toggler{
+    border-color: #d6d1d1
+}
+
+.nav-bk{
+    top: 56px;
+    background-color:#F3EAC0 ;
+    z-index: 1;
+}
+.upper-bar .navbar-nav{
+    font-weight:bold;
+    padding-right: 0;
+        
+}
+
+
+/*--------------------------------------------------------------------------------------------*/
+.advertising{
+   justify-content: center;
+}
+.adv-lg-scn{
+    display:inline-flex;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+.row{
+/*    margin-left: 0px;*/
+    
+}
+.topics-title .row{
+/*    background-color:#F3EAC0;*/
+    color: #fff;
+    height: 100px;
+    align-items: center;
+     transition: all .5s ease-in-out;
+     -webkit-animation: fadeInUp 1.1s ease-in-out;
+     -moz-animation: fadeInUp 1.1s ease-in-out;
+     animation: fadeInUp 1.1s ease-in-out;
+}
+.topics-title ul{
+    margin-top: 25px;
+}
+
+.topics-title .row ul li{
+    width: 200px;
+
+    text-align: center;
+    border: 1px solid #ccc;
+    background-color: #396474;
+    line-height: 40px;
+    font-size: 20px;
+    border-radius: 5px;
+    list-style: none;
+    display:inline-block;
+    margin-left:15px;
+    margin-bottom: 10px;
+    padding: 0px;
+    text-decoration: none;
+
+}
+.topics-title .row ul li a{ color: #fff;}
+
+.topics-title .row ul :hover {
+    background-color: #F3EAC0;
+    color: #4a4848;
+    text-decoration: none;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+}
+.card-row{
+     transition: all .5s ease-in-out;
+     -webkit-animation: fadeInUp 1.1s ease-in-out;
+     -moz-animation: fadeInUp 1.1s ease-in-out;
+     animation: fadeInUp 1.1s ease-in-out;  
+}
+.topics-cards{
+     max-height: 500px;
+    box-shadow: 5px 5px 8px #ddd;
+    
+
+}
+
+.topics-cards img{
+    max-height: 250px;
+    width:100%;
+    min-height: 200px
+
+}
+
+
+.tpoics .row {
+   justify-content: center;
+
+    
+}
+
+
+
+
+.new-topic{
+    width: 40%;
+    margin: 50px auto;
+    text-align: right;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.form-new-tpoic{
+    padding: 5px;
+    text-align: center;
+    background-color:  #396474;
+    border-radius: 10px;
+    color: #5d5050;
+}
+
+
+@media only screen and (min-width: 600px) {
+
+.form-design{
+    width: 70%;
+    margin: 50px auto;
+    text-align: right;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+  
+    
+} 
+
+}
+
+@media only screen and (max-width: 600px) {
+
+.form-design{
+
+    text-align: right;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+  
+    
+} 
+
+}
+
+
+
+
+.profile-page{
+    width: 80%;
+    font-size: 20px;
+    margin: 50px auto;
+    text-align: right;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+
+
+
+
+.footer-lg{
+    background-color: #992c40;
+    color: #fff;
+    height: 50px;
+    padding: 15px ;
+    height: 60px;
+    min-height: 100%;
+
+
+    
+}
+
+.list-mobile ul li {
+    justify-content: center;
+    list-style: none;
+    display: inline-block;
+    padding-left: 40px;
+
+}
+
+
+ .footer-mobile .dropdown-menu {
+    width: 350px;
+    margin-left: -30px;
+    margin-top: -40px;
+ 
+    
+}
+
+
+
+.fade-inout{
+    
+        -webkit-animation: fadeInUp 1.1s ease-in-out;
+        -moz-animation: fadeInUp 1.1s ease-in-out;
+        -o-animation: fadeInUp 1.1s ease-in-out;
+        animation: fadeInUp 1.1s ease-in-out;
+        
+
+
+}
+@keyframes fadeInUp{
+    0%{
+        opacity: 0;
+        transform: translateY(20px)
+    }
+     100%{
+        opacity: 1;
+        transform: translateY(0)
+    }
+}

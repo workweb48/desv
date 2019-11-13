@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags%}
+   
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-md-4 col-sm-12 d-flex justify-content-center">
+        <img src="/static/images/registerfor.svg" class="img-fluid text-center my-5 mr-5" alt="Responsive image" style="height: 70%">
+    
+    
+    </div>
+
+    <div class="col-md-8 col-sm-12 d-flex justify-content-center">
+        <div class="form-design mb-5">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 py-2 text-center " 
+                        style="
+                               background-color:  #396474;
+                               color: #fff;
+                               border-radius: 10px;">
+                    
+                    تسجيل جديد
+                
+                </legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+
+                <button class="btn btn-outline-info" type="submit">تسجيل</button>
+                <small class="text-muted ">
+                <p class="mt-3">بتسجيلك انت تقر و توافق على شروط <a href="{% url 'Conditions'%}"> الاستخدام والخصوصية</a> </p>
+                </small>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                لديك حساب ! سجل دخول  <a class="ml-2" href="{% url 'login'%}">تسجيل الدخول</a>
+            </small>
+        </div>
+    </div>
+    
+    
+    
+    </div>
+
+   
+    
+    </div>
+
+</div>
+
+
+{%endblock%}

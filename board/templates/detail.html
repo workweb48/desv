@@ -1,0 +1,135 @@
+
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+{%block content%}
+                            <!--    start boards -->
+                           <div class="  topics-title my-5 d-none d-md-block"> 
+                              <div class="row justify-content-center ">
+                                <ul>
+                                  <li >
+                                    <a class="dropdown-item" href="{% url 'index'  %}">جميع الأعمال</a>
+                                  </li>
+                                      {% for board in a_boards%}
+                                  <li >
+                                      <a class="dropdown-item text-white " href="{% url 'boards_topic' board.pk %}">{{board.name}}</a>
+                                  </li>
+                                      {% endfor%}
+                                  </ul>
+
+                              </div>
+                          </div>
+                             <!--    end boards -->
+
+
+
+                <div class="container-fluied">
+                    <div class="container text-center " style="width: 75%" >
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}} text-center">
+                        {{message}}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                        </div>
+
+
+                                 <div class="card" style=" 
+                                   width: 80%;
+                                   margin: 50px auto;
+                                   border: 1px solid #ccc;
+                                   border-radius: 10px;
+                                   text-align: center ;
+                                   padding: 10px;">
+
+                                     <img  src="{{topic.img_url}}" class="card-img-top" alt="..." style="">
+
+                                    <div class="card-body" style="font-size: 20px"  >
+
+                                     <h3 class="card-title"  >{{topic.title}}</h3>
+                                     <p class="text-muted"> {{topic.description}}</p>
+                                     <p class="card-text"><a href="{% url 'user_topics' topic.id %}">   المصمم :  {{topic.created_by.first_name}} {{topic.created_by.last_name}}    </a></p>
+                                     <p class="card-text">  الايميل : {{topic.created_by.email}}</p>
+
+                                            <a class="text-secondary" href="https://api.whatsapp.com/send?phone={{topic.created_by.profile.mobile}}" target="_blank" >
+                                                <p style="font-size: 22px;color: #080;" class="card-text ">{{topic.created_by.profile.mobile}} <i style="font-size: 20px " class="fab fa-whatsapp"></i></p></a>
+
+
+
+
+                                        {% if topic.created_by == user %}
+                                    <div class="form-group btn-editing">
+                                        <a class="btn btn-secondary" href="{% url 'update' topic.pk %}">تحرير</a>
+
+
+                                        <a class="btn btn-danger" href="{% url 'delete' topic.pk %}"> حذف </a>
+                                    </div>
+
+                                    {% endif %}
+
+
+
+                                <!--        <a href="#" class="btn btn-primary m">ارقام التواصل</a>-->
+                                    </div>
+                                      <div class="card-footer">
+                                     <p class="text-muted">{{topic.created_dt}}</p>
+                                        </div>
+                                  </div>
+
+
+                            </div>
+
+                <div class="row mb-5 text-center "  style="
+                                    width: 75%;
+
+                                   margin: 50px auto;
+                                   text-align: right;
+                                   border: 1px solid #ccc;
+                                   border-radius: 10px;
+                                   padding: 15px;
+                                   ">
+                    <div class="col-md">
+                        <h3 class="border-bottom pb-3 mb-4">عدد الأعمال المصمم</h3>
+                        <h4 class=" text-center p-4 text-light" style="background-color: #a9c45e;">
+                            {{topics.count}}
+                        </h4>
+
+                        <h3 class="border-bottom mb-4 pb-3 mt-5">أعمال المصمم</h3>
+           <div class="card-row">
+                  <div class="row text-center justify-content-center">
+                      {% for topic in topics_list %}
+                
+                    <div class="card ml-3 mb-4  topics-cards " style="width: 18rem;">
+                        
+                    <a href="{{topic.img_url}}" data-lightbox="mygallery" data-title="قرية المصممين">
+                        <img src="{{topic.img_url}}" class="card-img-top" alt="..." style="cursor: zoom-in">
+                     </a>
+                        
+                        <div class="card-body ">
+                            <a href="{% url 'detail' topic.id%}">
+                        <h5 class="card-title pb-3 "> {{topic.title}} </h5></a>
+                        </div>
+  
+                    </div>
+                       {% endfor %}
+   
+
+                  </div>
+           </div>
+
+
+                    </div>
+
+                </div>
+    
+   
+
+     {% include 'pagination.html' with page=topics_list %}
+
+
+
+{%endblock%}

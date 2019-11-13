@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	 {% block title%}
+            {% if title %}
+    <title>قرية المصممين | {{title}}</title>
+    {% else %}
+    <title>قرية المصممين</title>
+    {% endif %}
+         {%endblock%}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/normalize.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+     <link rel="stylesheet" href="{% static 'css/AllStyle.css' %}">
+
+</head>
+  <body>
+
+          <!--  start upper bar -->
+
+      <!--  end upper bar -->
+
+      <!--  start navbar -->
+ <div class="upper-bar sticky-top   ">
+              <nav class="navbar navbar-expand-lg navbar-light ">
+               <a class="navbar-brand" href="{% url 'index'  %}">
+                    <img src="static/images/LW.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                    قرية المصممين
+                  </a>
+<!--              <a class="navbar-brand" href="{% url 'index'  %}">قرية المصممين</a>-->
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#uppernav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span  class="navbar-toggler-icon"><i style="font-size: 30px; " class="fas fa-bars"></i></span>
+              </button>
+
+              <div class="collapse navbar-collapse " id="uppernav">
+                <ul class="navbar-nav ml-auto  text-right justify-content-center">
+                  <li class="nav-item active mr-3">
+                    <a class="nav-link" href="{% url 'index'  %}">الصفحة الرئيسية <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'up_imge'  %}">مواقع رفع الصور</a>
+                  </li>
+                  <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      الأقسام
+                    </a>
+                    <div class="dropdown-menu text-center " aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'index'  %}">جميع الأعمال</a>
+                              {% for board in a_boards%}
+                            <a class="dropdown-item" href="{% url 'boards_topic' board.pk %}">{{board.name}}</a>
+
+                               {% endfor%}
+
+                    </div>
+                  </li>
+
+                  <li class="nav-item dropdown d-lg-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      المبدعون
+                    </a>
+                    <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
+                        {% for to_advs in Topic_Advs%}
+                      <a class="dropdown-item" href="{{to_advs.url_adv}}">{{to_advs.title}}</a>
+                          {% endfor%}
+                    </div>
+                  </li>
+
+
+                </ul>
+
+                            {% if user.is_authenticated %}
+                          <a class="nav-item nav-link text-right text-white" href="{% url 'new_topic' %}">عمل جديد</a>
+                          <a class="nav-item nav-link text-right text-white" href="{% url 'profile'  %}">بروفايل</a>
+                          <a class="nav-item nav-link text-right text-white" href="{% url 'logout' %}">تسجيل خروج</a>
+                            {% else%}
+                          <a class="nav-item nav-link text-right text-white" href="{% url 'login' %}">دخول</a>
+                          <a class="nav-item nav-link text-right text-white" href="{% url 'register'%}">تسجيل</a>
+                          {% endif%}
+
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search" value="{{request.GET.q}}">
+                  <button class="btn btn-light my-2 my-sm-0 m-3" type="submit">Search</button>
+                </form>
+              </div>
+            </nav>
+      </div>
+      <!--  end navbar -->
+
+
+  <!--  start slider -->
+         <div >
+              {% for sl_advs in Slide_Advs%}
+
+             <img src="{{sl_advs.Slide_img_upload.url}}" class="img-fluid" alt="Responsive image">
+ {% endfor%}
+      </div>
+
+
+  <!--  end slider -->
+
+
+        <!--  start advertising -->
+
+    <div class="container-fluid pl-0 pr-0 mt-5 ">
+     <div class="d-none d-lg-block">
+      <div class="row advertising  ">
+
+
+
+          {% for to_advs in Topic_Advs%}
+
+
+        <div class="card border-secondary mb-3 mt-3 ml-3 text-center " style="max-width: 18rem;">
+            <div class="card-header adv-lg-scn  " style="height: 50%;">
+                <img src="{{to_advs.AD_profile.image.url}}" class="card-img-top w-25" alt="...">
+
+                <h5 class=" px-2  ">  <a class="text-decoration-none " href="{{to_advs.url_adv}}"> {{to_advs.title}} </a></h5>
+
+            </div>
+            <div class="card-body text-secondary ">
+            <p class="text-muted">{{to_advs.description}}</p>
+            <a class="text-secondary" href="https://api.whatsapp.com/send?phone={{to_advs.AD_profile.mobile}}" target="_blank" >
+            <p style="font-size: 18px;color: #080;" class="card-text ">{{to_advs.AD_profile.mobile}} <i style="font-size: 18px " class="fab fa-whatsapp"></i></p></a>
+
+
+
+
+            </div>
+        </div>
+
+          {% endfor%}
+        </div>
+     </div>
+
+     </div>
+
+      <!--  end advertising -->
+
+
+
+       <!--  start topics -->
+
+{%block content%}
+
+
+
+    {%endblock%}
+
+
+       <!--  start footer -->
+  <footer class=" d-none d-md-block">
+      <div class="footer-lg text-center ">
+        <p>
+            Design by : Mas'hom Aljedani  [ 2019 ]
+          </p>
+          </div>
+
+      </footer>
+
+       <!--  end footer -->
+             <!--  start footer mobiles -->
+
+      <footer class=" d-md-none">
+          <div class="footer-lg text-center ">
+              <div class=" text-center">
+
+              </div>
+              </div>
+
+          </footer>
+
+       <!--  end footer  mobiles -->
+
+
+
+
+
+
+<!--      start loading-->
+   <section class="loading-ov">
+<div class="sk-fading-circle">
+  <div class="sk-circle1 sk-circle"></div>
+  <div class="sk-circle2 sk-circle"></div>
+  <div class="sk-circle3 sk-circle"></div>
+  <div class="sk-circle4 sk-circle"></div>
+  <div class="sk-circle5 sk-circle"></div>
+  <div class="sk-circle6 sk-circle"></div>
+  <div class="sk-circle7 sk-circle"></div>
+  <div class="sk-circle8 sk-circle"></div>
+  <div class="sk-circle9 sk-circle"></div>
+  <div class="sk-circle10 sk-circle"></div>
+  <div class="sk-circle11 sk-circle"></div>
+  <div class="sk-circle12 sk-circle"></div>
+</div>
+      </section>
+      <!--      end loading-->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="/static/js/jquery-3.4.1.min.js"></script>
+      <script src="/static/js/popper.min.js"></script>
+      <script src="/static/js/lightbox-plus-jquery.min.js"></script>
+      <script src="/static/js/bootstrap.min.js"></script>
+
+      <script src="/static/js/fontawesome.min.js"></script>
+
+      <script src="/static/js/myjqu.js"></script>
+      
+
+      
+
+  </body>
+</html>

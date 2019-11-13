@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+<div class="container text-center mb-5 " >
+  <div class="form-design">
+            <legend class="border-bottom pb-1 mb-3 text-center"  style="
+                                       background-color:  #396474;
+                                       color: #fff;
+                                       border-radius: 10px;">
+
+
+                تعديل الملف الشخصي
+
+
+            </legend>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{user_form|crispy}}
+        <!--         {{profile_form|crispy}}-->
+                <div>
+                    <span class="mb-2" style="display: block">صورة الملف الشخصي *</span>
+
+                    الصورة الحالية: 
+                    <a href="{{user.profile.image.url}}" data-lightbox="mygallery" >{{user.profile.image}}</a>
+                 <div class="row my-2 d-flex justify-content-start" >
+
+                        <div class="card"  style="width:15%;height: 15%;">
+                           <a href="{{user.profile.image.url}}" data-lightbox="mygallery" >
+                            <img src=" {{user.profile.image.url}}" class="img-thumbnail" alt="..." style="cursor: zoom-in">
+                                </a>
+
+
+                        </div>
+
+
+
+                </div>
+
+
+
+
+                    <br>
+                    <label for="image" class="btn btn-outline-secondary ">اختيار الصورة</label>
+                    <input type="file" name="image" id="image" accept="image/*" style="display: none">
+                </div>
+                <input class="btn btn-outline-primary mt-4" type="submit" value="تعديل">
+                 <a class="btn btn-outline-secondary mr-4 mt-4 " href="{% url 'profile' %}">تراجع</a>
+            </form>
+        </div>
+</div>
+{% endblock %}

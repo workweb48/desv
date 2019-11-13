@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+
+
+
+{%block content%}
+
+
+ <div class="tpoics container-fluid mt-5 text-center mb-5  ">
+     
+     
+     
+                 <!--    start boards -->
+                 <div class="  topics-title my-5 d-none d-md-block"> 
+              <div class="row ">
+                  <ul>
+                  <li >
+                    <a class="dropdown-item" href="{% url 'index'  %}">جميع الأعمال</a>
+                  </li>
+                      {% for board in a_boards%}
+                  <li >
+                      <a class="dropdown-item  " href="{% url 'boards_topic' board.pk %}">{{board.name}}</a>
+                  </li>
+                      {% endfor%}
+                  </ul>
+
+              </div>
+          </div>
+
+             <!--    end boards -->
+     
+     
+     
+     
+          <div class="card-row">
+                  <div class="row">
+                      {% for upload_img in up_images %}
+                
+                     <div class="card ml-3 mb-4 topics-cards" style="width: 18rem;">
+
+                            <a href="{{upload_img.url_img }}"  target="_blank">
+                                <img src="{{upload_img.up_img_upload.url}}" class="card-img-top" alt="...">
+                             </a>
+
+                       <div class="card-body overflow-hidden ">
+                                <h5 class="card-title pb-3 pt-2 border-top "> {{upload_img.name}} </h5>
+
+                              </div>
+                        </div>
+                       {% endfor %}
+   
+
+                  </div>
+           </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{%endblock%}

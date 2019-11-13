@@ -1,0 +1,97 @@
+
+{% extends 'base.html'%}
+
+
+
+{%block content%}
+
+  <!--    start boards -->
+         <div class="  topics-title my-5 d-none d-md-block"> 
+              <div class="row d-flex justify-content-center">
+                  <ul>
+                  <li >
+                      <a class="dropdown-item" href="{% url 'index'  %}">جميع الأعمال</a>
+                  </li>
+                      {% for board in a_boards%}
+                  <li >
+                      <a class="dropdown-item text-white " href="{% url 'boards_topic' board.pk %}">{{board.name}}</a>
+                  </li>
+                      {% endfor%}
+                  </ul>
+
+              </div>
+          </div>
+
+             <!--    end boards -->
+
+
+
+<div class="container">
+    {% for topic in topics_list %}
+        {% if forloop.counter == 1 %}
+    <div class="border rounded">
+            <div class="row mb-2  mt-4 d-flex justify-content-center" >
+                
+                <div class="card"  style="width:15%;height: 15%;">
+                   <a href="{{topic.created_by.profile.cv_img_url}}" data-lightbox="mygallery" >
+                    <img src=" /static/images/resume.svg" class="img-thumbnail" alt="..." style="cursor: zoom-in">
+                        </a>
+
+
+                </div>
+
+                 
+
+            </div>
+                <div class="row mb-5 d-flex justify-content-center">
+                <a href="{{topic.created_by.profile.cv_img_url}}"  target="_blank">     <button type="button" class="btn btn-outline-secondary">عرض السيرة الذاتية
+
+                    </button> </a>
+                </div>
+    </div>
+        {% endif %}
+     {% endfor %}
+        <div class="row mb-5">
+
+            <div class="col">
+                <h3 class="border-bottom pb-3 my-4"  style="text-align: center">عدد أعمال المصمم </h3>
+                <h4 class=" text-center p-4 text-light" style="background-color: #a9c45e;">
+                    {{posts.count}}
+                </h4>
+                                        {% for topic in posts %}
+                {% empty %}
+                <h4 class="text-center mb-5">لا توجد أعمال</h4>
+                                        {% endfor %}
+
+
+            </div>
+        </div>
+
+    
+           <div class="card-row">
+                  <div class="row text-center justify-content-center">
+                      {% for topic in topics_list %}
+                
+                    <div class="card ml-3 mb-4  topics-cards " style="width: 18rem;">
+                        
+                    <a href="{% url 'detail' topic.id%}">
+                        <img src="{{topic.img_url}}" class="card-img-top" alt="...">
+                     </a>
+                        <div class="card-body ">
+                        <h5 class="card-title pb-3 "> {{topic.title}} </h5>
+                        </div>
+                     
+                    </div>
+                       {% endfor %}
+   
+
+                  </div>
+           </div>
+
+</div>
+     {% include 'pagination.html' with page=topics_list %}
+
+
+
+
+{%endblock%}

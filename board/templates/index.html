@@ -1,0 +1,84 @@
+{% extends 'base.html'%}
+
+
+
+
+
+
+
+{%block content%}
+
+
+
+             <!--  start topics -->
+
+
+
+    <div class="tpoics container-fluid mt-5 text-center mb-5  ">
+        
+           <div class="  topics-title my-5 d-none d-md-block"> 
+              <div class="row ">
+                  <ul>
+                  <li >
+                    <a class="dropdown-item" href="{% url 'index'  %}">جميع الأعمال</a>
+                  </li>
+                      {% for board in a_boards%}
+                  <li >
+                      <a class="dropdown-item  " href="{% url 'boards_topic' board.pk %}">{{board.name}}</a>
+                  </li>
+                      {% endfor%}
+                  </ul>
+
+              </div>
+          </div>
+
+
+
+
+
+
+          <div class="card-row ">
+                  <div class="row text-center">
+                      {% for topic in topics %}
+
+                     <div class="card ml-3 mb-4 topics-cards" style="width: 18rem;">
+
+                            <a  href="{{topic.img_url}}"  data-lightbox="mygallery" data-title="قرية المصممين">
+                                <img src="{{topic.img_url}}" class="card-img-top" alt="..." style="cursor: zoom-in">
+                             </a>
+
+                       <div class="card-body overflow-hidden ">
+                           <a class="text-secondary" href="{% url 'detail' topic.id %}" >     <h5 class="card-title pb-3 pt-2 border-top "> {{topic.title}} </h5></a>
+
+                                     <p class="card-text font-weight-bold" style="font-size: 18px;">
+
+                            <a href="{% url 'user_topics' topic.id %}">
+                             {{topic.created_by.first_name}} {{topic.created_by.last_name}}
+                               </a>
+                          </p>
+
+
+                            <a class="text-secondary" href="https://api.whatsapp.com/send?phone={{topic.created_by.profile.mobile}}" target="_blank" >
+                                <p style="font-size: 18px;color: #080;" class="card-text ">{{topic.created_by.profile.mobile}} <i style="font-size: 18px " class="fab fa-whatsapp"></i></p></a>
+
+
+                              </div>
+                                 <div class="card-footer">
+                                  <small class="text-muted">{{topic.created_dt}}</small>
+                                 </div>
+                        </div>
+                       {% endfor %}
+   
+
+                  </div>
+           </div>
+    </div>  
+       
+       <!--  end topics -->
+      
+ {% include 'pagination.html' with page=topics %}
+
+
+
+
+{%endblock%}
