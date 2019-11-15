@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'desv.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'desvdb',
+        'USER': 'mas48_admin',
+        'PASSWORD': 'al9j7d2rty',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -127,6 +131,7 @@ STATICFILES_DIRS = [
 
     os.path.join(BASE_DIR,'static_ev')
 ]
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 CRISPY_TEMPLATE_PACK='bootstrap4'
 
