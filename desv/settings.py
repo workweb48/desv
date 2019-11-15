@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'r5i%b!edg7mba54+v5n__9-38p9amn)jj%$e-k=6xie_dmm=@-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = True 
 
 ALLOWED_HOSTS = ['159.203.80.171','www.des-v.com']
 
@@ -131,7 +131,7 @@ STATICFILES_DIRS = [
 
     os.path.join(BASE_DIR,'static_ev')
 ]
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CRISPY_TEMPLATE_PACK='bootstrap4'
 
